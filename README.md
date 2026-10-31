@@ -536,3 +536,68 @@ public class AppointmentsFrame extends BaseFrame {
         }
     }
 }
+
+
+package petpulse;
+
+import java.awt.*;
+import java.sql.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+/** Soft-delete vault: Restore, Delete Permanently, Clear Archive (Admin only). */
+public class ArchiveFrame extends BaseFrame {
+
+    private final DefaultTableModel model = UITheme.model(
+            "Archive ID",
+            "Module",
+            "Record ID",
+            "Summary",
+            "Archived At",
+            "Full Data"
+    );
+
+    private final JTable table = new JTable(model);
+
+    private final JTextField txtSearch =
+            UITheme.searchField("Search archive...");
+
+    public ArchiveFrame() {
+
+        super(
+                "Archive",
+                "Archive",
+                "Archived records are safe here - restore them any time"
+        );
+
+        JButton btnRestore = UITheme.createBtn(
+                "Restore",
+                UITheme.BRIGHT_TEAL
+        );
+
+        JButton btnDel = UITheme.createBtn(
+                "Delete Permanently",
+                UITheme.ARCHIVE_RED
+        );
+
+        JButton btnClear = UITheme.createBtn(
+                "Clear Archive",
+                UITheme.STEEL_BLUE
+        );
+
+        JPanel btns = new JPanel(
+                new FlowLayout(FlowLayout.LEFT, 10, 0)
+        );
+
+        btns.setOpaque(false);
+
+        btns.add(btnRestore);
+        btns.add(btnDel);
+        btns.add(btnClear);
+
+        JPanel bar = new JPanel(new BorderLayout());
+        bar.setOpaque(false);
+
+        // Continued in Part 2...
+    }
+}
